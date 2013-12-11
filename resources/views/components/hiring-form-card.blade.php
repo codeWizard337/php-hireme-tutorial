@@ -63,6 +63,13 @@
           </div>
 
           <div class="form-group row">
+            <label for="city" class="col-xs-12 col-lg-4 col-form-label">
+              City
+            </label>
+            <input type="text" class="col-xs-12 col-lg-7 mx-3 form-control" id="city" name="city">
+          </div>
+
+          <div class="form-group row">
             <label for="description" class="col-12 col-form-label">
               Description
             </label>

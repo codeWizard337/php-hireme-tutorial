@@ -49,3 +49,7 @@ Route::get('/add', function() {
     return view('user.add');
 });
 
+Route::get('/status', function() {
+    return view('user.status');
+});
+

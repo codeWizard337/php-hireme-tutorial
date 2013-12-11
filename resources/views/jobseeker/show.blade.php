@@ -81,13 +81,14 @@
       </div>
     </div>
 
+    @auth
     <div class="mt-5">
       <div class="my-2 font-weight-bold">
         Applicant List
       </div>
       <div class="row mx-1">
         <div class="col-2 col-lg-1 border">
-        NO.
+        NO
         </div>
 
         <div class="col-5 border">
@@ -98,6 +99,7 @@
           ACTION
         </div>
       </div>
+
 
       <div>
         @for ($i = 1; $i <= 10; $i++)
@@ -130,5 +132,6 @@
         @endfor
       </div>
     </div>
+    @endauth
   </div>
 @endsection
