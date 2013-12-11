@@ -58,7 +58,11 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
-            <a class="dropdown-item" href="{{ route('user.status') }}">Status</a>
+
+            @can('user', App\User::class)
+              <a class="dropdown-item" href="{{ route('user.status') }}">Status</a>
+            @endcan
+
             <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
           </div>
         </li>

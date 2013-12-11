@@ -14,11 +14,10 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $result = Company::where('name', 'like', '%' . $request->q . '%')
-            ->paginate(12);
+        $result = Company::where('name', 'like', '%' . $request->q . '%');
 
         return view('company.index', [
-            'companies' => $result,
+            'companies' => $result->paginate(12)->appends($request->all()),
         ]);
     }
 

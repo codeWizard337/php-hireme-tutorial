@@ -40,4 +40,4 @@ Route::group([ 'prefix' => 'user' ], function () {
     Route::get('/{user}', 'UserController@show')->name('user.show')->where('user', '[0-9]+');
 });
 
-Route::view('/laravel', 'welcome')->name('laravel');
+// Route::view('/laravel', 'welcome')->name('laravel');

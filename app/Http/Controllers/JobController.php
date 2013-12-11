@@ -80,7 +80,7 @@ class JobController extends Controller
         $job->company_id = $request->company_id;
         $job->save();
 
-        return redirect()->route('job.show', [ 'job' => $id ]);
+        return redirect()->route('job.show', [ 'job' => $job->id ]);
     }
 
     /**
