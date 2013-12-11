@@ -26,4 +26,19 @@ class JobApplication extends Model
     public function status() {
         return $this->belongsTo(Status::class);
     }
+
+    /**
+     * Additional function: auto publish accepted job on profile
+     *
+     * @param  int  $user_id
+     * @return void
+     */
+    public function publish($user_id) {
+        $detail = new UserDetail;
+        $detail->type = 2;
+        $detail->title = $this->job->position . ' at ' . $this->job->company->name;
+        $detail->description = $this->job->description;
+        $detail->user_id = $user_id;
+        $detail->save();
+    }
 }

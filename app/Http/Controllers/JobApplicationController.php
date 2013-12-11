@@ -123,14 +123,8 @@ class JobApplicationController extends Controller
         $application = JobApplication::withTrashed()->findOrFail($id);
 
         if ($request->verdict === 'publish') {
+            $application->publish(Auth::id());
             $application->status_id = Status::is_published();
-
-            $detail = new UserDetail;
-            $detail->type = 2;
-            $detail->title = $application->job->position . ' at ' . $application->job->company->name;
-            $detail->description = $application->job->description;
-            $detail->user_id = Auth::id();
-            $detail->save();
 
         } else if ($request->verdict === 'delete') {
             $application->status_id = Status::is_deleted();
