@@ -15,7 +15,9 @@
     @foreach ($applications as $application)
       <div class="row text-center">
         <div class="col-3 border">{{ $application->job->company->name }}</div>
-        <div class="col-3 border">{{ $application->job->position }}</div>
+        <a class="col-3 border text-decoration-none" href="{{ route('job.show', [ 'job' => $application->job->id ]) }}">
+          {{ $application->job->position }}
+        </a>
         <div class="col-2 p-1 border">{{ date('d/m/y', strtotime($application->updated_at)) }}</div>
         <div class="col-2 p-1 border">{{ ucwords($application->status->name) }}</div>
 

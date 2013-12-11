@@ -118,9 +118,9 @@ class JobApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id) {
-        $this->authorize('owner', JobApplication::findOrFail($id)->user);
+        $this->authorize('owner', JobApplication::withTrashed()->findOrFail($id)->user);
 
-        $application = JobApplication::findOrFail($id);
+        $application = JobApplication::withTrashed()->findOrFail($id);
 
         if ($request->verdict === 'publish') {
             $application->status_id = Status::is_published();

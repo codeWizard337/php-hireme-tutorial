@@ -67,7 +67,7 @@
 
     @can('update_job', $job)
       <div class="mt-5">
-        <div class="my-2 font-weight-bold">Applicant List (TBA)</div>
+        <div class="my-2 font-weight-bold">Applicant List</div>
 
         <div class="row mx-1 text-center">
           <div class="col-2 col-lg-1 border">NO</div>
