@@ -12,7 +12,7 @@ class Company extends Model
     protected $table = 'companies';
 
     protected $fillable = [
-        'name',
+        'name', 'logo',
     ];
 
     public function jobs() {
@@ -20,6 +20,6 @@ class Company extends Model
     }
 
     public function users() {
-        return $this->hasMany(CompanyUser::class, 'company_id', 'id');
+        return $this->belongsToMany(User::class, 'company_users');
     }
 }

@@ -74,10 +74,10 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $this->authorize('owner', UserDetail::find($id)->user);
+        $this->authorize('owner', UserDetail::findOrFail($id)->user);
 
         return view('user.detail.edit', [
-            'detail' => UserDetail::find($id),
+            'detail' => UserDetail::findOrFail($id),
         ]);
     }
 
@@ -89,13 +89,13 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        $this->authorize('owner', UserDetail::find($id)->user);
+        $this->authorize('owner', UserDetail::findOrFail($id)->user);
 
         $this->validate($request, [
             'title' => [ 'required' ],
         ]);
 
-        $detail = UserDetail::find($id);
+        $detail = UserDetail::findOrFail($id);
         $detail->title = $request->title;
         $detail->description = $request->description;
         $detail->save();
@@ -110,7 +110,7 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        $this->authorize('owner', UserDetail::find($id)->user);
+        $this->authorize('owner', UserDetail::findOrFail($id)->user);
 
         UserDetail::destroy($id);
         return redirect()->route('user.profile');

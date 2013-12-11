@@ -109,7 +109,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         return view('user.profile', [
             'user' => $user,

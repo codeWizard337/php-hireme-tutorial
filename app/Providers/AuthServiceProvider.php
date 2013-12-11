@@ -30,5 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('user', 'App\Policies\UserPolicy@user');
 
         Gate::define('owner', 'App\Policies\UserPolicy@owner');
+
+        Gate::define('update_job', 'App\Policies\UserPolicy@update_job');
     }
 }
