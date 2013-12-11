@@ -69,6 +69,13 @@
             <textarea class="col-xs-12 col-lg-11 mx-3 form-control" id="description" rows="5" name="description"></textarea>
           </div>
 
+          <div class="form-group row">
+            <label for="qualifications" class="col-12 col-form-label">
+              Qualifications
+            </label>
+            <textarea class="col-xs-12 col-lg-11 mx-3 form-control" id="qualifications" rows="5" name="qualifications"></textarea>
+          </div>
+
         </form>
       </div>
 

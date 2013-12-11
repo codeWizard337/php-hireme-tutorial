@@ -60,5 +60,14 @@
         Rp 500000 / yr
       </div>
     </div>
+
+    <div class="mt-5">
+      <div class="h5 font-weight-bold">
+        Contact
+      </div>
+      <div>
+        +6280123123
+      </div>
+    </div>
   </div>
 @endsection

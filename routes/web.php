@@ -25,6 +25,10 @@ Route::get('/add/job', function() {
     return view('employer.add');
 });
 
+Route::get('/company/index', function() {
+    return view('employer.index');
+});
+
 Route::get('/job/index', function() {
     return view('jobseeker.index');
 });
@@ -32,3 +36,4 @@ Route::get('/job/index', function() {
 Route::get('/job/show', function() {
     return view('jobseeker.show');
 });
+
