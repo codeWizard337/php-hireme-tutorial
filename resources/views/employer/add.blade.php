@@ -2,8 +2,8 @@
 
 @section('content')
   <div class="container p-3">
-    <div class="text-center mb-4">
-      <h3>Hiring Form</h3>
+    <div class="h3 text-center mb-4">
+      Hiring Form
     </div>
 
     <x-hiring-form-card />

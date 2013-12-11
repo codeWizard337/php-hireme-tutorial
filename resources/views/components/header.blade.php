@@ -29,7 +29,7 @@
           Employers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Show List</a>
+          <a class="dropdown-item" href="#">Company List</a>
           <a class="dropdown-item" href="#">Add Job</a>
         </div>
       </li>

@@ -37,3 +37,15 @@ Route::get('/job/show', function() {
     return view('jobseeker.show');
 });
 
+Route::get('/profile', function() {
+    return view('user.profile');
+});
+
+Route::get('/edit', function() {
+    return view('user.edit');
+});
+
+Route::get('/add', function() {
+    return view('user.add');
+});
+
