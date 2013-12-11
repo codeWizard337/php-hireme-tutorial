@@ -11,6 +11,6 @@ class PageController extends Controller
     }
 
     public function contact() {
-        return abort(404, "No Page");
+        return view('contact');
     }
 }
