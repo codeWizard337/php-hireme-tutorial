@@ -13,11 +13,22 @@
       City
     </div>
 
+    @auth
     <div class="row justify-content-center my-3">
-      <button type="submit" class="col-xs-12 col-lg-4 mx-3 btn btn-primary">
-        Apply
-      </button>
+      @if (is_jobseeker)
+        <button type="submit" class="col-xs-12 col-lg-4 mx-3 btn btn-primary">
+          Apply
+        </button>
+      @elseif (is_employer)
+        <button type="submit" class="col-xs-5 col-lg-4 mx-3 btn btn-primary">
+          Edit Job
+        </button>
+        <button type="submit" class="col-xs-5 col-lg-4 mx-3 btn btn-danger">
+          Close Job
+        </button>
+      @endif
     </div>
+    @endauth
 
     <div class="mt-3">
       <div class="h5 font-weight-bold">
