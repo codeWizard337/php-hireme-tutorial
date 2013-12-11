@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  @include('components.error-card')
 
   <div class="container p-3">
     <div class="h3 text-center">
@@ -8,13 +9,13 @@
     </div>
 
     <div class="row row-cols-xs-1 row-cols-md-2 justify-content-center">
-      <form class="p-1" style="max-width:500px;" action="#" method="post">
+      <form class="p-1" style="max-width:500px;" action="{{ route('login') }}" method="post">
         @csrf
         <div class="form-group row">
           <label for="email" class="col-xs-12 col-lg-4 col-form-label">
             Email Address
           </label>
-          <input type="email" class="col-xs-12 col-lg-7 form-control mx-3" id="email" name="email" value="">
+          <input type="email" class="col-xs-12 col-lg-7 form-control mx-3" id="email" name="email" value="{{ Cookie::get('rememberedEmail') }}">
         </div>
 
         <div class="form-group row">

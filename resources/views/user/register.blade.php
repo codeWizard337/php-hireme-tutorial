@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  @include('components.error-card')
 
   <div class="container p-3">
     <div class="h3 text-center">
@@ -8,7 +9,7 @@
     </div>
 
     <div class="row row-cols-xs-1 row-cols-md-2 justify-content-center">
-      <form class="p-1" style="max-width:500px;" action="#" method="post">
+      <form class="p-1" style="max-width:500px;" action="{{ route('register') }}" method="post">
         @csrf
         <div class="form-group row">
           <label for="name" class="col-xs-12 col-lg-4 col-form-label">

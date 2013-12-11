@@ -16,6 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@home')->name('home');
 Route::get('/contact', 'PageController@contact')->name('contact');
 
+Route::group([ 'prefix' => 'user' ], function () {
+    Route::group([ 'middleware' => 'guest' ], function() {
+        Route::get('/register', 'UserController@showRegisterForm')->name('user.register');
+        Route::post('/register', 'UserController@register')->name('register');
+
+        Route::get('/login', 'UserController@showLoginForm')->name('user.login');
+        Route::post('/login', 'UserController@login')->name('login');
+    });
+
+    Route::group([ 'middleware' => 'auth' ], function() {
+        Route::get('/logout', 'UserController@logout')->name('user.logout');
+
+        Route::get('/profile', 'UserController@profile')->name('user.profile');
+    });
+
+    Route::group([ 'middleware' => 'guest' ], function() {
+        Route::get('/{user}', 'UserController@show')->name('user.show');
+    });
+});
+
 Route::get('/laravel', function() {
     return view('welcome');
 })->name('laravel');
