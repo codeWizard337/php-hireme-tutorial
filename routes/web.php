@@ -21,6 +21,10 @@ Route::get('/login', function() {
     return view('user.login');
 });
 
+Route::get('/register', function() {
+    return view('user.register');
+});
+
 Route::get('/add/job', function() {
     return view('employer.add');
 });
