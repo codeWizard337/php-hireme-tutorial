@@ -18,8 +18,15 @@
           Job Seekers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Fulltimer</a>
-          <a class="dropdown-item" href="#">Freelancer</a>
+          <form action="{{ route('job.index') }}" method="get">
+            <input type="hidden" name="fulltime" value="true">
+            <button type="submit" class="dropdown-item">Fulltimer</button>
+          </form>
+
+          <form action="{{ route('job.index') }}" method="get">
+            <input type="hidden" name="freelance" value="true">
+            <button type="submit" class="dropdown-item">Freelancer</button>
+          </form>
         </div>
       </li>
 
@@ -66,7 +73,6 @@
           <a class="nav-link" href="{{ route('user.register') }}">Register</a>
         </li>
       @endauth
-
     </ul>
   </div>
 </nav>
