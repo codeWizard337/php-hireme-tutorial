@@ -34,8 +34,8 @@ class User extends Authenticatable
         return $this->hasMany(UserDetail::class, 'user_id', 'id');
     }
 
-    public function applicants() {
-        return $this->hasMany(JobApplication::class, 'user_id', 'id');
+    public function applications() {
+        return $this->hasMany(JobApplication::class, 'user_id', 'id')->withTrashed();
     }
 
     public function companies() {

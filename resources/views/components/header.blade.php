@@ -19,13 +19,12 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <form action="{{ route('job.index') }}" method="get">
-            <input type="hidden" name="fulltime" value="true">
-            <button type="submit" class="dropdown-item">Fulltimer</button>
-          </form>
-
-          <form action="{{ route('job.index') }}" method="get">
-            <input type="hidden" name="freelance" value="true">
-            <button type="submit" class="dropdown-item">Freelancer</button>
+            <button type="submit" class="dropdown-item" name="type" value="fulltime">
+              Fulltimer
+            </button>
+            <button type="submit" class="dropdown-item" name="type" value="freelance">
+              Freelancer
+            </button>
           </form>
         </div>
       </li>

@@ -9,11 +9,10 @@ class JobApplication extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'companies';
+    protected $table = 'job_applications';
 
     protected $fillable = [
-        'status',
-        'user_id', 'job_id',
+        'user_id', 'job_id', 'status_id',
     ];
 
     public function user() {
@@ -21,6 +20,10 @@ class JobApplication extends Model
     }
 
     public function job() {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class)->withTrashed();
+    }
+
+    public function status() {
+        return $this->belongsTo(Status::class);
     }
 }

@@ -16,16 +16,17 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $result = Job::where('position', 'like', '%' . $request->q . '%');
+        $result = Job::where('position', 'like', '%' . $request->q . '%')
+            ->orWhereHas('company', function($query) use ($request) {
+                return $query->Where('name', 'like', '%'. $request->q . '%');
+            });
 
         if ($request->has('company')) {
             $result->where('company_id', $request->company);
         }
 
-        if ($request->has('fulltime')) {
-            $result->where('is_fulltime', true);
-        } else if ($request->has('freelance')) {
-            $result->where('is_fulltime', false);
+        if ($request->has('type')) {
+            $result->where('is_fulltime', $request->type === 'fulltime');
         }
 
         return view('job.index', [
@@ -150,7 +151,7 @@ class JobController extends Controller
     public function destroy($id) {
         $this->authorize('update_job', Job::findOrFail($id));
 
-        // Job::find($id)->flowers()->delete();
+        Job::find($id)->applications()->delete();
         Job::destroy($id);
         return redirect()->route('company.index');
     }

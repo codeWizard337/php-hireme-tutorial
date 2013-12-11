@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\JobApplication;
+use App\Status;
+use App\UserDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobApplicationController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +35,9 @@ class JobApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function status() {
-        return view('user.status');
+        return view('user.status', [
+            'applications' => Auth::user()->applications,
+        ]);
     }
 
     /**
@@ -40,7 +56,15 @@ class JobApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        return abort(404, "No Page");
+        $this->authorize('user', User::class);
+
+        $application = new JobApplication;
+        $application->status_id = Status::pending();
+        $application->user_id = Auth::id();
+        $application->job_id = $request->job_id;
+        $application->save();
+
+        return redirect()->route('job.show', [ 'job' => $request->job_id ]);
     }
 
     /**
@@ -71,16 +95,50 @@ class JobApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        return abort(404, "No Page");
+        $this->authorize('update_job', JobApplication::findOrFail($id)->job);
+
+        $application = JobApplication::findOrFail($id);
+
+        if ($request->verdict === 'accept') {
+            $application->status_id = Status::accepted();
+        } else if ($request->verdict === 'reject') {
+            $application->status_id = Status::rejected();
+        }
+
+        $application->save();
+
+        return redirect()->route('job.show', [ 'job' => $application->job->id ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        return abort(404, "No Page");
+    public function destroy(Request $request, $id) {
+        $this->authorize('owner', JobApplication::findOrFail($id)->user);
+
+        $application = JobApplication::findOrFail($id);
+
+        if ($request->verdict === 'publish') {
+            $application->status_id = Status::is_published();
+
+            $detail = new UserDetail;
+            $detail->type = 2;
+            $detail->title = $application->job->position . ' at ' . $application->job->company->name;
+            $detail->description = $application->job->description;
+            $detail->user_id = Auth::id();
+            $detail->save();
+
+        } else if ($request->verdict === 'delete') {
+            $application->status_id = Status::is_deleted();
+        }
+
+        $application->save();
+
+        JobApplication::destroy($id);
+        return redirect()->route('user.status');
     }
 }

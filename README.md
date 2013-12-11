@@ -49,6 +49,7 @@ Here a list of URLs that had been accessed and (maybe) give some insights to thi
   * [Remember Logged-In User](https://laravel.com/docs/7.x/authentication#remembering-users)
   * [Get soft-deleted data with Eloquent](https://laraveldaily.com/belongsto-and-withtrashed-linking-to-deleted-row/)
   * [Display line break inside Laravel Blade](https://www.quora.com/How-can-I-use-a-line-break-tag-inside-Laravel-blade-template-engine)
+  * [Eloquent Query with Eager Loading](https://stackoverflow.com/questions/29989908/laravel-where-on-relationship-object/29990340#29990340)
 
 
 ## Image Resources

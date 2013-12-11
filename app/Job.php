@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Job extends Model
 {
@@ -25,7 +26,13 @@ class Job extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function applicants() {
-        return $this->hasMany(JobApplication::class, 'job_id', 'id');
+    public function applications() {
+        return $this->hasMany(JobApplication::class, 'job_id', 'id')
+            ->withTrashed();
+    }
+
+    public function user_status() {
+        return $this->hasMany(JobApplication::class, 'job_id', 'id')
+            ->where('user_id', Auth::id());
     }
 }
