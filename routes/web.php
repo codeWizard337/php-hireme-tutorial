@@ -13,47 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'PageController@home')->name('home');
+Route::get('/contact', 'PageController@contact')->name('contact');
 
-Route::get('/login', function() {
-    return view('user.login');
-});
+Route::get('/laravel', function() {
+    return view('welcome');
+})->name('laravel');
 
-Route::get('/register', function() {
-    return view('user.register');
-});
-
-Route::get('/add/job', function() {
-    return view('employer.add');
-});
-
-Route::get('/company/index', function() {
-    return view('employer.index');
-});
-
-Route::get('/job/index', function() {
-    return view('jobseeker.index');
-});
-
-Route::get('/job/show', function() {
-    return view('jobseeker.show');
-});
-
-Route::get('/profile', function() {
-    return view('user.profile');
-});
-
-Route::get('/edit', function() {
-    return view('user.edit');
-});
-
-Route::get('/add', function() {
-    return view('user.add');
-});
-
-Route::get('/status', function() {
-    return view('user.status');
-});
-
+// Route::get('/', function () { return view('home'); });
+// Route::get('/login', function() { return view('user.login'); });
+// Route::get('/register', function() { return view('user.register'); });
+// Route::get('/add/job', function() { return view('employer.add'); });
+// Route::get('/company/index', function() { return view('employer.index'); });
+// Route::get('/job/index', function() { return view('jobseeker.index'); });
+// Route::get('/job/show', function() { return view('jobseeker.show'); });
+// Route::get('/profile', function() { return view('user.profile'); });
+// Route::get('/edit', function() { return view('user.edit'); });
+// Route::get('/add', function() { return view('user.add'); });
+// Route::get('/status', function() { return view('user.status'); });
