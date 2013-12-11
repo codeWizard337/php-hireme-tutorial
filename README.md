@@ -1,6 +1,6 @@
 # Web-FindHireMe
 
-TBA
+**FindHireMe** is a website to find information about open jobs and apply to it. There are three types of user’s role in this website: Recruiter, Job Seeker, and Guest (non-logged-in user). The recruiter can manage the open job on the website, the job seeker can look at the information and apply for the job, while the guest can only look at the information of the jobs.
 
 
 ## Contributors
@@ -25,7 +25,10 @@ TBA
 
 ## Creative Thinking
 
-  * TBA
+  * Use SOFT DELETE to keep data integrity on the status page.
+  * Create a lot of view components to prevent duplicate codes.
+  * Use factory faker as database seeder (with a lot of settings).
+  * Hide unused timestamps from database tables.
 
 
 ## Deployment
@@ -34,6 +37,7 @@ TBA
   * Run `composer install` to download all dependencies needed.
   * Run `cp .env.example .env && php artisan key:generate` to prepare all important data.
   * Run `php artisan storage:link` to create symbolic link to public storage directory.
+  * Run `composer dump-autoload` to autoload seeder files.
   * Run `php artisan migrate --seed` to create and fill the database.
   * Run `php artisan serve` and access the webapp on localhost port 8000.
 
