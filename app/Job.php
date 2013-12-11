@@ -13,8 +13,12 @@ class Job extends Model
 
     protected $fillable = [
         'position', 'qualification', 'description',
-        'location', 'salary', 'contact',
+        'location', 'salary', 'contact', 'is_fulltime',
         'company_id',
+    ];
+
+    protected $casts = [
+        'is_fulltime' => 'boolean',
     ];
 
     public function company() {
