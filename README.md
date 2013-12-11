@@ -50,6 +50,7 @@ Here a list of URLs that had been accessed and (maybe) give some insights to thi
   * [Get soft-deleted data with Eloquent](https://laraveldaily.com/belongsto-and-withtrashed-linking-to-deleted-row/)
   * [Display line break inside Laravel Blade](https://www.quora.com/How-can-I-use-a-line-break-tag-inside-Laravel-blade-template-engine)
   * [Eloquent Query with Eager Loading](https://stackoverflow.com/questions/29989908/laravel-where-on-relationship-object/29990340#29990340)
+  * [Change Faker locale](https://stackoverflow.com/questions/34496720/change-faker-locale-in-laravel-5-2/42594893#42594893)
 
 
 ## Image Resources
