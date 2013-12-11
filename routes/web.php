@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@home')->name('home');
 Route::get('/contact', 'PageController@contact')->name('contact');
 
+Route::resource('/user/detail', 'UserDetailController');
+
 Route::group([ 'prefix' => 'user' ], function () {
     Route::group([ 'middleware' => 'guest' ], function() {
         Route::get('/register', 'UserController@showRegisterForm')->name('user.register');
