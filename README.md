@@ -51,11 +51,20 @@ Here a list of URLs that had been accessed and (maybe) give some insights to thi
   * [Display line break inside Laravel Blade](https://www.quora.com/How-can-I-use-a-line-break-tag-inside-Laravel-blade-template-engine)
   * [Eloquent Query with Eager Loading](https://stackoverflow.com/questions/29989908/laravel-where-on-relationship-object/29990340#29990340)
   * [Change Faker locale](https://stackoverflow.com/questions/34496720/change-faker-locale-in-laravel-5-2/42594893#42594893)
+  * [Filter queries with pagination](https://www.codermen.com/blog/93/how-to-keep-filter-data-after-the-click-to-next-button-in-laravel-pagination)
+  * [Laravel factory states](https://laravel-news.com/laravel-model-factory-states)
 
 
 ## Image Resources
 
-  * TBA
+  * https://commons.wikimedia.org/wiki/File:Google_%22G%22_Logo.svg
+  * https://www.stickpng.com/img/icons-logos-emojis/social-media-icons/square-facebook-icon
+  * https://seeklogo.com/free-vector-logos/twitter
+  * https://www.linkedin.com/company/traveloka-com
+  * https://www.tiket.com/
+  * https://www.tokopedia.com/merchandise
+  * https://www.pngdownload.id/download/shopee.html
+  * https://www.bukalapak.com/c/komputer/laptop/m-lenovo
 
 
 <hr/>
