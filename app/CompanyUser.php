@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CompanyUser extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'company_users';
 
     protected $fillable = [
