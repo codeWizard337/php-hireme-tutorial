@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Job;
+use App\Status;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -150,6 +151,10 @@ class JobController extends Controller
      */
     public function destroy($id) {
         $this->authorize('update_job', Job::findOrFail($id));
+
+        Job::find($id)->applications()
+            ->where('status_id', Status::pending())
+            ->update([ 'status_id' => Status::is_deleted() ]);
 
         Job::find($id)->applications()->delete();
         Job::destroy($id);
