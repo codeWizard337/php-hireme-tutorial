@@ -17,6 +17,9 @@ Route::get('/', 'PageController@home')->name('home');
 Route::get('/contact', 'PageController@contact')->name('contact');
 
 Route::resource('/user/detail', 'UserDetailController');
+Route::resource('/company', 'CompanyController');
+Route::resource('/job', 'JobController');
+Route::resource('/apply', 'JobApplicationController');
 
 Route::group([ 'prefix' => 'user' ], function () {
     Route::group([ 'middleware' => 'guest' ], function() {
@@ -25,31 +28,16 @@ Route::group([ 'prefix' => 'user' ], function () {
 
         Route::get('/login', 'UserController@showLoginForm')->name('user.login');
         Route::post('/login', 'UserController@login')->name('login');
+
+        Route::get('/{user}', 'UserController@show')->name('user.show')->where('user', '[0-9]+');
     });
 
     Route::group([ 'middleware' => 'auth' ], function() {
         Route::get('/logout', 'UserController@logout')->name('user.logout');
 
         Route::get('/profile', 'UserController@profile')->name('user.profile');
-    });
-
-    Route::group([ 'middleware' => 'guest' ], function() {
-        Route::get('/{user}', 'UserController@show')->name('user.show');
+        Route::get('/status', 'JobApplicationController@status')->name('user.status');
     });
 });
 
-Route::get('/laravel', function() {
-    return view('welcome');
-})->name('laravel');
-
-// Route::get('/', function () { return view('home'); });
-// Route::get('/login', function() { return view('user.login'); });
-// Route::get('/register', function() { return view('user.register'); });
-// Route::get('/add/job', function() { return view('employer.add'); });
-// Route::get('/company/index', function() { return view('employer.index'); });
-// Route::get('/job/index', function() { return view('jobseeker.index'); });
-// Route::get('/job/show', function() { return view('jobseeker.show'); });
-// Route::get('/profile', function() { return view('user.profile'); });
-// Route::get('/edit', function() { return view('user.edit'); });
-// Route::get('/add', function() { return view('user.add'); });
-// Route::get('/status', function() { return view('user.status'); });
+Route::view('/laravel', 'welcome')->name('laravel');
