@@ -13,16 +13,16 @@ class CompanySeeder extends Seeder
     public function run()
     {
         Company::insert([
-            [ 'name' => 'Google', 'logo' => 'public/company/random.png' ],
-            [ 'name' => 'Facebook', 'logo' => 'public/company/random.png' ],
-            [ 'name' => 'Twitter', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Google', 'logo' => 'public/company/google.png' ],
+            [ 'name' => 'Facebook', 'logo' => 'public/company/facebook.png' ],
+            [ 'name' => 'Twitter', 'logo' => 'public/company/twitter.png' ],
 
-            [ 'name' => 'Traveloka', 'logo' => 'public/company/random.png' ],
-            [ 'name' => 'Tiket.com', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Traveloka', 'logo' => 'public/company/traveloka.png' ],
+            [ 'name' => 'Tiket.com', 'logo' => 'public/company/tiket.png' ],
 
-            [ 'name' => 'Tokopedia', 'logo' => 'public/company/random.png' ],
-            [ 'name' => 'Shopee', 'logo' => 'public/company/random.png' ],
-            [ 'name' => 'Bukalapak', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Tokopedia', 'logo' => 'public/company/tokopedia.jpeg' ],
+            [ 'name' => 'Shopee', 'logo' => 'public/company/shopee.jpeg' ],
+            [ 'name' => 'Bukalapak', 'logo' => 'public/company/bukalapak.png' ],
         ]);
     }
 }
