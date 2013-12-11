@@ -30,7 +30,7 @@ class JobController extends Controller
         }
 
         return view('job.index', [
-            'jobs' => $result->paginate(5),
+            'jobs' => $result->paginate(5)->appends($request->all()),
         ]);
     }
 
