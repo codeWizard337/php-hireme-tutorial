@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             $table->text('address');
-            $table->text('gender');
-            $table->text('dob');
+            $table->string('gender');
+            $table->string('dob');
 
             $table->integer('role');
 

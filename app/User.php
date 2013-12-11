@@ -31,7 +31,7 @@ class User extends Authenticatable
     ];
 
     public function details() {
-        return $this->hasMany(UserDetails::class, 'user_id', 'id');
+        return $this->hasMany(UserDetail::class, 'user_id', 'id');
     }
 
     public function applicants() {

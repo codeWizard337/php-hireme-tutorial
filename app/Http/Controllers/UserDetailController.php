@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\UserDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserDetailController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +43,18 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        return abort(404, "No Page");
+        $this->validate($request, [
+            'title' => [ 'required' ],
+        ]);
+
+        $detail = new UserDetail;
+        $detail->type = $request->profileType;
+        $detail->title = $request->title;
+        $detail->description = $request->description;
+        $detail->user_id = Auth::id();
+        $detail->save();
+
+        return redirect()->route('user.profile');
     }
 
     /**
@@ -51,7 +74,11 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        return view('user.detail.edit');
+        $this->authorize('owner', UserDetail::find($id)->user);
+
+        return view('user.detail.edit', [
+            'detail' => UserDetail::find($id),
+        ]);
     }
 
     /**
@@ -62,7 +89,18 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        return abort(404, "No Page");
+        $this->authorize('owner', UserDetail::find($id)->user);
+
+        $this->validate($request, [
+            'title' => [ 'required' ],
+        ]);
+
+        $detail = UserDetail::find($id);
+        $detail->title = $request->title;
+        $detail->description = $request->description;
+        $detail->save();
+
+        return redirect()->route('user.profile');
     }
 
     /**
@@ -72,6 +110,9 @@ class UserDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        return abort(404, "No Page");
+        $this->authorize('owner', UserDetail::find($id)->user);
+
+        UserDetail::destroy($id);
+        return redirect()->route('user.profile');
     }
 }

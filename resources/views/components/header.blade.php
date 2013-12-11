@@ -23,7 +23,7 @@
         </div>
       </li>
 
-      @auth
+      @can('recruiter', App\User::class)
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Employers
@@ -39,7 +39,7 @@
           <a class="nav-link" href="{{ route('company.index') }}">Employers</a>
         </li>
 
-      @endauth
+      @endcan
 
       <li class="nav-item mx-1">
         <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
@@ -48,7 +48,7 @@
       @auth
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            My Account
+            {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>

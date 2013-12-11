@@ -28,8 +28,6 @@ Route::group([ 'prefix' => 'user' ], function () {
 
         Route::get('/login', 'UserController@showLoginForm')->name('user.login');
         Route::post('/login', 'UserController@login')->name('login');
-
-        Route::get('/{user}', 'UserController@show')->name('user.show')->where('user', '[0-9]+');
     });
 
     Route::group([ 'middleware' => 'auth' ], function() {
@@ -38,6 +36,8 @@ Route::group([ 'prefix' => 'user' ], function () {
         Route::get('/profile', 'UserController@profile')->name('user.profile');
         Route::get('/status', 'JobApplicationController@status')->name('user.status');
     });
+
+    Route::get('/{user}', 'UserController@show')->name('user.show')->where('user', '[0-9]+');
 });
 
 Route::view('/laravel', 'welcome')->name('laravel');

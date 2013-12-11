@@ -5,177 +5,28 @@
     <div class="row mb-5">
       <div class="col-9">
         <div class="h3 my-1">
-          Name
+          {{ $user->name }}
         </div>
         <div class="h6 my-1">
-          Email
+          {{ $user->email }}
         </div>
       </div>
 
       <div class="col-3">
-        @auth
-        <div class="row justify-content-end">
-          <button type="submit" class="btn btn-primary">
-            Add Profile
-          </button>
-        </div>
-        @endauth
+        @can('owner', $user)
+          <div class="row justify-content-end">
+            <a type="submit" class="btn btn-primary" href="{{ route('detail.create') }}">
+              Add Profile
+            </a>
+          </div>
+        @endcan
       </div>
     </div>
 
-    {{-- @if (size > 0) --}}
-      <div class="mb-5">
-        <div class="h4">
-          Education
-        </div>
-
-        @for ($i = 1; $i < 5; $i++)
-          <div class="row mb-3">
-            <div class="col-8">
-              <div>
-                <div class="mt-1 font-weight-bold">
-                  Title
-                </div>
-
-                <div class="mt-1">
-                  Description
-                </div>
-              </div>
-            </div>
-
-            @auth
-            <div class="col-4 d-flex justify-content-start align-items-end">
-              <button type="submit" class="mx-1 btn btn-primary">Edit</button>
-              <button type="submit" class="mx-1 btn btn-danger">Remove</button>
-            </div>
-            @endauth
-          </div>
-        @endfor
-      </div>
-    {{-- @endif --}}
-
-    {{-- @if (size > 0) --}}
-      <div class="mb-5">
-        <div class="h4">
-          Experience
-        </div>
-
-        @for ($i = 1; $i < 5; $i++)
-          <div class="row mb-3">
-            <div class="col-8">
-              <div>
-                <div class="mt-1 font-weight-bold">
-                  Title
-                </div>
-
-                <div class="mt-1">
-                  Description
-                </div>
-              </div>
-            </div>
-
-            @auth
-            <div class="col-4 d-flex justify-content-start align-items-end">
-              <button type="submit" class="mx-1 btn btn-primary">Edit</button>
-              <button type="submit" class="mx-1 btn btn-danger">Remove</button>
-            </div>
-            @endauth
-          </div>
-        @endfor
-      </div>
-    {{-- @endif --}}
-
-    {{-- @if (size > 0) --}}
-      <div class="mb-5">
-        <div class="h4">
-          Skills
-        </div>
-
-        @for ($i = 1; $i < 5; $i++)
-          <div class="row mb-3">
-            <div class="col-8">
-              <div>
-                <div class="mt-1 font-weight-bold">
-                  Title
-                </div>
-
-                <div class="mt-1">
-                  Description
-                </div>
-              </div>
-            </div>
-
-            @auth
-            <div class="col-4 d-flex justify-content-start align-items-end">
-              <button type="submit" class="mx-1 btn btn-primary">Edit</button>
-              <button type="submit" class="mx-1 btn btn-danger">Remove</button>
-            </div>
-            @endauth
-          </div>
-        @endfor
-      </div>
-    {{-- @endif --}}
-
-    {{-- @if (size > 0) --}}
-      <div class="mb-5">
-        <div class="h4">
-          Awards
-        </div>
-
-        @for ($i = 1; $i < 5; $i++)
-          <div class="row mb-3">
-            <div class="col-8">
-              <div>
-                <div class="mt-1 font-weight-bold">
-                  Title
-                </div>
-
-                <div class="mt-1">
-                  Description
-                </div>
-              </div>
-            </div>
-
-            @auth
-            <div class="col-4 d-flex justify-content-start align-items-end">
-              <button type="submit" class="mx-1 btn btn-primary">Edit</button>
-              <button type="submit" class="mx-1 btn btn-danger">Remove</button>
-            </div>
-            @endauth
-          </div>
-        @endfor
-      </div>
-    {{-- @endif --}}
-
-    {{-- @if (size > 0) --}}
-      <div class="mb-5">
-        <div class="h4">
-          Projects
-        </div>
-
-        @for ($i = 1; $i < 5; $i++)
-          <div class="row mb-3">
-            <div class="col-8">
-              <div>
-                <div class="mt-1 font-weight-bold">
-                  Title
-                </div>
-
-                <div class="mt-1">
-                  Description
-                </div>
-              </div>
-            </div>
-
-            @auth
-            <div class="col-4 d-flex justify-content-start align-items-end">
-              <button type="submit" class="mx-1 btn btn-primary">Edit</button>
-              <button type="submit" class="mx-1 btn btn-danger">Remove</button>
-            </div>
-            @endauth
-          </div>
-        @endfor
-      </div>
-    {{-- @endif --}}
+    @include('components.user-detail-list', [ 'title' => 'Educations', 'lists' => $educations ])
+    @include('components.user-detail-list', [ 'title' => 'Experiences', 'lists' => $experiences ])
+    @include('components.user-detail-list', [ 'title' => 'Skills', 'lists' => $skills ])
+    @include('components.user-detail-list', [ 'title' => 'Awards', 'lists' => $awards ])
+    @include('components.user-detail-list', [ 'title' => 'Projects', 'lists' => $projects ])
   </div>
 @endsection

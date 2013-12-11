@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function register(Request $request) {
         $this->validate($request, [
-            'username' => [ 'required', 'string', 'unique:users,username', 'min:5' ],
+            'name' => [ 'required', 'string' ],
             'email' => [ 'required', 'string', 'email', 'unique:users,email' ],
             'password' => [ 'required', 'string', 'confirmed', 'min:8' ],
             'address' => [ 'required', 'string', 'min:10' ],
@@ -37,7 +37,7 @@ class UserController extends Controller
         ]);
 
         $user = new User;
-        $user->username = $request->username;
+        $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->address = $request->address;
@@ -76,7 +76,6 @@ class UserController extends Controller
             ]);
         }
 
-
         if ($request->remember === 'on') {
             Cookie::queue('rememberedEmail', $request->email, 7 * 24 * 60);
         }
@@ -110,6 +109,15 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return view('user.profile');
+        $user = User::find($id);
+
+        return view('user.profile', [
+            'user' => $user,
+            'educations' => $user->details()->where('type', 1)->get(),
+            'experiences' => $user->details()->where('type', 2)->get(),
+            'skills' => $user->details()->where('type', 3)->get(),
+            'awards' => $user->details()->where('type', 4)->get(),
+            'projects' => $user->details()->where('type', 5)->get(),
+        ]);
     }
 }
