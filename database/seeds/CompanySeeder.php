@@ -1,5 +1,6 @@
 <?php
 
+use App\Company;
 use Illuminate\Database\Seeder;
 
 class CompanySeeder extends Seeder
@@ -11,22 +12,17 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        $this->insert([ 'name' => 'Google', 'logo' => 'public/company/random.png' ]);
-        $this->insert([ 'name' => 'Facebook', 'logo' => 'public/company/random.png' ]);
-        $this->insert([ 'name' => 'Twitter', 'logo' => 'public/company/random.png' ]);
+        Company::insert([
+            [ 'name' => 'Google', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Facebook', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Twitter', 'logo' => 'public/company/random.png' ],
 
-        $this->insert([ 'name' => 'Traveloka', 'logo' => 'public/company/random.png' ]);
-        $this->insert([ 'name' => 'Tiket.com', 'logo' => 'public/company/random.png' ]);
+            [ 'name' => 'Traveloka', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Tiket.com', 'logo' => 'public/company/random.png' ],
 
-        $this->insert([ 'name' => 'Tokopedia', 'logo' => 'public/company/random.png' ]);
-        $this->insert([ 'name' => 'Shopee', 'logo' => 'public/company/random.png' ]);
-        $this->insert([ 'name' => 'Bukalapak', 'logo' => 'public/company/random.png' ]);
-    }
-
-    private function insert($value) {
-        DB::table('companies')->insert([
-            'name' => $value['name'],
-            'logo' => $value['logo'],
+            [ 'name' => 'Tokopedia', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Shopee', 'logo' => 'public/company/random.png' ],
+            [ 'name' => 'Bukalapak', 'logo' => 'public/company/random.png' ],
         ]);
     }
 }
