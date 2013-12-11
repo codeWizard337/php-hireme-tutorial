@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="{{ route('home') }}">
     <img src="{{ Storage::url('public/logo.png') }}" class="img-fluid" style="max-width: 50%;">
   </a>
 
@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item mx-1">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="{{ route('home') }}">Home</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -24,25 +24,25 @@
       </li>
 
       @auth
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Employers
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Company List</a>
-          <a class="dropdown-item" href="#">Add Job</a>
-        </div>
-      </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Employers
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('company.index') }}">Company List</a>
+            <a class="dropdown-item" href="{{ route('job.create') }}">Add Job</a>
+          </div>
+        </li>
 
       @else
-      <li class="nav-item mx-1">
-        <a class="nav-link" href="#">Employers</a>
-      </li>
+        <li class="nav-item mx-1">
+          <a class="nav-link" href="{{ route('company.index') }}">Employers</a>
+        </li>
 
       @endauth
 
       <li class="nav-item mx-1">
-        <a class="nav-link" href="#">Contact Us</a>
+        <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
       </li>
 
       @auth
@@ -51,22 +51,21 @@
             My Account
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Status</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
+            <a class="dropdown-item" href="{{ route('user.status') }}">Status</a>
+            <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
           </div>
         </li>
 
       @else
         <li class="nav-item mx-1">
-          <a class="nav-link" href="login">Login</a>
+          <a class="nav-link" href="{{ route('user.login') }}">Login</a>
         </li>
 
         <li class="nav-item mx-1">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="{{ route('user.register') }}">Register</a>
         </li>
       @endauth
-
 
     </ul>
   </div>
