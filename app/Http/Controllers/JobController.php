@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Job;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -13,7 +16,21 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        return view('jobseeker.index');
+        $result = Job::where('position', 'like', '%' . $request->q . '%');
+
+        if ($request->has('company')) {
+            $result->where('company_id', $request->company);
+        }
+
+        if ($request->has('fulltime')) {
+            $result->where('is_fulltime', true);
+        } else if ($request->has('freelance')) {
+            $result->where('is_fulltime', false);
+        }
+
+        return view('job.index', [
+            'jobs' => $result->paginate(5),
+        ]);
     }
 
     /**
@@ -22,7 +39,11 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('employer.add');
+        $this->authorize('recruiter', User::class);
+
+        return view('job.add', [
+            'companies' => Auth::user()->companies,
+        ]);
     }
 
     /**
@@ -32,7 +53,32 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        return abort(404, "No Page");
+        $this->authorize('recruiter', User::class);
+
+        $this->validate($request, [
+            'contact' => [ 'required' ],
+            'position' => [ 'required' ],
+            'salary' => [ 'required' ],
+            'address' => [ 'required' ],
+            'city' => [ 'required' ],
+            'description' => [ 'required' ],
+            'qualification' => [ 'required' ],
+        ]);
+
+        $job = new Job;
+        $job->position = $request->position;
+        $job->qualification = $request->qualification;
+        $job->description = $request->description;
+        $job->address = $request->address;
+        $job->city = $request->city;
+        $job->salary = $request->salary;
+        $job->contact = $request->contact;
+        $job->is_fulltime = ($request->is_fulltime === 'true');
+
+        $job->company_id = $request->company_id;
+        $job->save();
+
+        return redirect()->route('job.show', [ 'job' => $id ]);
     }
 
     /**
@@ -42,7 +88,9 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return view('jobseeker.show');
+        return view('job.show', [
+            'job' => Job::findOrFail($id),
+        ]);
     }
 
     /**
@@ -52,7 +100,11 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        return abort(404, "No Page");
+        $this->authorize('update_job', Job::findOrFail($id));
+
+        return view('job.edit', [
+            'job' => Job::findOrFail($id),
+        ]);
     }
 
     /**
@@ -63,7 +115,30 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        return abort(404, "No Page");
+        $this->authorize('update_job', Job::findOrFail($id));
+
+        $this->validate($request, [
+            'contact' => [ 'required' ],
+            'position' => [ 'required' ],
+            'salary' => [ 'required' ],
+            'address' => [ 'required' ],
+            'city' => [ 'required' ],
+            'description' => [ 'required' ],
+            'qualification' => [ 'required' ],
+        ]);
+
+        $job = Job::findOrFail($id);
+        $job->position = $request->position;
+        $job->qualification = $request->qualification;
+        $job->description = $request->description;
+        $job->address = $request->address;
+        $job->city = $request->city;
+        $job->salary = $request->salary;
+        $job->contact = $request->contact;
+        $job->is_fulltime = ($request->is_fulltime === 'true');
+        $job->save();
+
+        return redirect()->route('job.show', [ 'job' => $id ]);
     }
 
     /**
@@ -73,6 +148,10 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        return abort(404, "No Page");
+        $this->authorize('update_job', Job::findOrFail($id));
+
+        // Job::find($id)->flowers()->delete();
+        Job::destroy($id);
+        return redirect()->route('company.index');
     }
 }

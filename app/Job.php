@@ -9,11 +9,11 @@ class Job extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'companies';
+    protected $table = 'jobs';
 
     protected $fillable = [
-        'position', 'qualification', 'description',
-        'location', 'salary', 'contact', 'is_fulltime',
+        'position', 'qualification', 'description', 'address', 'city',
+        'salary', 'contact', 'is_fulltime',
         'company_id',
     ];
 

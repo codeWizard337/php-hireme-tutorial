@@ -19,9 +19,10 @@ class CreateJobsTable extends Migration
             $table->string('position');
             $table->text('qualification');
             $table->text('description');
-            $table->text('location');
-            $table->text('salary');
-            $table->text('contact');
+            $table->text('address');
+            $table->text('city');
+            $table->integer('salary');
+            $table->string('contact');
             $table->boolean('is_fulltime');
 
             $table->foreignId('company_id')->constrained('companies');

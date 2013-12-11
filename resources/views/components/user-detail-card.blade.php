@@ -14,12 +14,12 @@
   @can('owner', $user)
     <div class="col-4 d-flex justify-content-start align-items-end">
       <div class="mx-0">
-        <a class="btn btn-primary" href="{{ route('detail.edit', ['detail' => $detail->id]) }}">
+        <a class="btn btn-primary" href="{{ route('detail.edit', [ 'detail' => $detail->id ]) }}">
           Edit
         </a>
       </div>
 
-      <form class="col mx-0" action="{{ route('detail.destroy', ['detail' => $detail->id]) }}" method="post">
+      <form class="col mx-0" action="{{ route('detail.destroy', [ 'detail' => $detail->id ]) }}" method="post">
         @csrf
         @method('DELETE')
         <button class="btn btn-danger" type="submit">Remove</button>
