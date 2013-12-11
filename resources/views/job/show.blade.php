@@ -7,7 +7,10 @@
     <div class="h6 text-center">{{ $job->city }}</div>
 
     <div class="row justify-content-center my-3">
-      @cannot('recruiter', App\User::class)
+      @if ($job->trashed())
+        <div class="h5 font-italic">This job has been deleted</div>
+
+      @elsecannot('recruiter', App\User::class)
         <form class="col-xs-5 col-lg-4 mx-3 p-0" action="{{ route('apply.store') }}" method="post">
           @csrf
 

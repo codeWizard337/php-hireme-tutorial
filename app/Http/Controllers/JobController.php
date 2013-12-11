@@ -90,7 +90,7 @@ class JobController extends Controller
      */
     public function show($id) {
         return view('job.show', [
-            'job' => Job::findOrFail($id),
+            'job' => Job::withTrashed()->findOrFail($id),
         ]);
     }
 
