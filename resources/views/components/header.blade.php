@@ -53,8 +53,6 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Profile</a>
             <a class="dropdown-item" href="#">Status</a>
-            <a class="dropdown-item" href="#">Resume</a>
-            <a class="dropdown-item" href="#">History</a>
             <a class="dropdown-item" href="#">Logout</a>
           </div>
         </li>
