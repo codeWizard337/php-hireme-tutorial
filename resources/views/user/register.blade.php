@@ -63,7 +63,7 @@
           <label for="txtBirth" class="col-xs-12 col-lg-4 col-form-label">
             Date of Birth
           </label>
-          <input type="text" class="col-xs-12 col-lg-7 mx-3 form-control" id="txtBirth" placeholder="mm/dd/yyyy" name="dob">
+          <input type="text" class="col-xs-12 col-lg-7 mx-3 form-control" id="txtBirth" placeholder="mm/dd/yyyy" name="date_of_birth">
         </div>
 
         <div class="form-group row">

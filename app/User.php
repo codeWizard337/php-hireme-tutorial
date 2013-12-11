@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
-        'address', 'gender', 'dob',
+        'address', 'gender', 'date_of_birth',
         'role',
     ];
 
@@ -29,6 +29,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     public function details() {
         return $this->hasMany(UserDetail::class, 'user_id', 'id');

@@ -9,6 +9,8 @@ class CompanyUser extends Model
 {
     protected $table = 'company_users';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'company_id', 'user_id',
     ];

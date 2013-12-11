@@ -18,8 +18,6 @@ class CreateCompanyUsersTable extends Migration
 
             $table->foreignId('company_id')->constrained('companies');
             $table->foreignId('user_id')->constrained('users');
-
-            $table->timestamps();
         });
     }
 

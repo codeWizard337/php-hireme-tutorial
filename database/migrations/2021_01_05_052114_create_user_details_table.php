@@ -21,8 +21,6 @@ class CreateUserDetailsTable extends Migration
             $table->text('description');
 
             $table->foreignId('user_id')->constrained('users');
-
-            $table->timestamps();
         });
     }
 

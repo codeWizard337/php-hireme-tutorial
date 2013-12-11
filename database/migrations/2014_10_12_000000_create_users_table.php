@@ -21,12 +21,11 @@ class CreateUsersTable extends Migration
 
             $table->text('address');
             $table->string('gender');
-            $table->string('dob');
+            $table->string('date_of_birth');
 
             $table->integer('role');
 
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

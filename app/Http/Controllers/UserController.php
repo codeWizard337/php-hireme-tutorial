@@ -33,7 +33,7 @@ class UserController extends Controller
             'password' => [ 'required', 'string', 'confirmed', 'min:8' ],
             'address' => [ 'required', 'string', 'min:10' ],
             'gender' => [ 'required' ],
-            'dob' => [ 'required' ],
+            'date_of_birth' => [ 'required' ],
         ]);
 
         $user = new User;
@@ -42,7 +42,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->dob = $request->dob;
+        $user->date_of_birth = $request->date_of_birth;
         $user->role = 2;
         $user->save();
 
