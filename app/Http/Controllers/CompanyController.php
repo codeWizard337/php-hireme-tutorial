@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -9,10 +10,16 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return view('employer.index');
+    public function index(Request $request) {
+        $result = Company::where('name', 'like', '%' . $request->q . '%')
+            ->paginate(12);
+
+        return view('company.index', [
+            'companies' => $result,
+        ]);
     }
 
     /**
@@ -27,10 +34,9 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store() {
         return abort(404, "No Page");
     }
 
