@@ -24,3 +24,11 @@ Route::get('/login', function() {
 Route::get('/add/job', function() {
     return view('employer.add');
 });
+
+Route::get('/job/index', function() {
+    return view('jobseeker.index');
+});
+
+Route::get('/job/show', function() {
+    return view('jobseeker.show');
+});
