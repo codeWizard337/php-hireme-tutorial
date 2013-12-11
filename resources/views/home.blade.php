@@ -10,6 +10,5 @@
       <img src="{{ Storage::url('public/5.jpg') }}" class="img-fluid">
       <img src="{{ Storage::url('public/6.jpg') }}" class="img-fluid">
     </div>
-
   </div>
 @endsection

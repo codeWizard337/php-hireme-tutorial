@@ -43,7 +43,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->gender = $request->gender;
         $user->dob = $request->dob;
-        $user->is_admin = false;
+        $user->role = 2;
         $user->save();
 
         return redirect()->route('user.login');

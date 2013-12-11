@@ -45,6 +45,7 @@ class UserDetailController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'title' => [ 'required' ],
+            'description' => [ 'required' ],
         ]);
 
         $detail = new UserDetail;
@@ -93,6 +94,7 @@ class UserDetailController extends Controller
 
         $this->validate($request, [
             'title' => [ 'required' ],
+            'description' => [ 'required' ],
         ]);
 
         $detail = UserDetail::findOrFail($id);

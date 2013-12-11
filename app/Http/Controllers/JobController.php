@@ -18,15 +18,15 @@ class JobController extends Controller
     public function index(Request $request) {
         $result = Job::where('position', 'like', '%' . $request->q . '%')
             ->orWhereHas('company', function($query) use ($request) {
-                return $query->Where('name', 'like', '%'. $request->q . '%');
+                return $query->where('name', 'like', '%'. $request->q . '%');
             });
 
         if ($request->has('company')) {
-            $result->where('company_id', $request->company);
+            $result = Job::where('company_id', $request->company);
         }
 
         if ($request->has('type')) {
-            $result->where('is_fulltime', $request->type === 'fulltime');
+            $result = Job::where('is_fulltime', $request->type === 'fulltime');
         }
 
         return view('job.index', [
